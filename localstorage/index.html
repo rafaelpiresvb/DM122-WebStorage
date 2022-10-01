@@ -6,19 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML 5 Local Storage API</title>
+    <style type="text/css">
+        .form-fieldset {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-content label {
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 1rem;
+        }
+    </style>
 </head>
+
 <body>
-    <fieldset>
+    <fieldset class="form-fieldset">
         <legend>Key/Value</legend>
-        <label>
-            Key:
-            <input type="text" name="key" />
-        </label>
-        <label>
-            Value:
-            <input type="text" name="value" />
-        </label>
-        <button>Add</button>
+        <div class="form-content">
+            <label>
+                <span>Key:</span>
+                <input type="text" name="key" />
+            </label>
+            <label>
+                <span>Value:</span>
+                <input type="text" name="value" />
+            </label>
+            <button>Add</button>
+        </div>
     </fieldset>
 
 </body>
