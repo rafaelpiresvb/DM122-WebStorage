@@ -29,7 +29,7 @@
 <body>
     <fieldset class="form-fieldset">
         <legend>Key/Value</legend>
-        <div class="form-content">
+        <form class="form-content" onsubmit="return confirm('submit?')">
             <label>
                 <span>Key:</span>
                 <input type="text" name="key" />
@@ -38,9 +38,14 @@
                 <span>Value:</span>
                 <input type="text" name="value" />
             </label>
-            <button>Add</button>
-        </div>
+            <button type="submit">Add</button>
+        </form>
     </fieldset>
+    <output>
+        <script>
+            document.write(window.location.href);
+        </script>
+    </output>
 
 </body>
 
