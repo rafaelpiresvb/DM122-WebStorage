@@ -56,7 +56,7 @@ const pokemonList = await db.pokemon
 console.log(pokemonList);
 
 const pokeHTML = pokemonList.map(toHTML).join("");
-document.body.innerHTML = pokeHTML;
+document.body.innerHTML += pokeHTML;
 
 function toHTML(poke) {
     return `
