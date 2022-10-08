@@ -10,19 +10,23 @@ db.on("populate", async () => {
     await db.pokemon.bulkPut([
         {
             name: "Bulbasaur",
-            picture: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"),
+            type: "grass"   
         },
         {
             name: "Charmander",
-            picture: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"),
+            type: "fire"
         },
         {
             name: "Squirtle",
-            picture: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"),
+            type: "water"
         },
         {
             name: "Pikachu",
-            picture: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
+            type: "electric"
         },
 
     ]);
@@ -52,16 +56,18 @@ document.body.innerHTML = pokeHTML;
 
 function toHTML(poke) {
     return `
-    <div>
-      <div class="card" style="border-color: var(--grass);">
-        <div class="card-id" style="color: var(--grass);">${poke.id}</div>
-        <div class="card-image">
-          <img alt="${poke.name}" src="${poke.picture}">
-        </div>
-      </div>
-      <div class="card-name" style="background-color: var(--grass);">
-        ${poke.name}
-      </div>
+    <div class="card ${poke.type}">
+        <h2>${poke.id}</h2>
+        <img alt="${poke.name}" src="${URL.createObjectURL(poke.picture)}"/>
+        <section class="section-name">
+            <h2 class="name">${poke.name}</h2>
+        </section>
     </div>
   `;
+}
+
+async function downloadImage(imageUrl) {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    return blob;
 }
