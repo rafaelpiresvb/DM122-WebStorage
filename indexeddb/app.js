@@ -11,7 +11,7 @@ db.on("populate", async () => {
         {
             name: "Bulbasaur",
             picture: await downloadImage(buildUrl(1)),
-            type: "grass"   
+            type: "grass"
         },
         {
             name: "Charmander",
@@ -30,6 +30,8 @@ db.on("populate", async () => {
         },
 
     ]);
+
+    retrieveData();
 });
 
 db.open();
@@ -45,18 +47,13 @@ function byChar(char) {
     };
 }
 
-// const byChar = char => poke => poke.name.includes()
+async function retrieveData() {
+    const pokemonList = await db.pokemon.toArray();
 
-const pokemonList = await db.pokemon
-    // .where("name")
-    // .startsWithIgnoreCase("c")
-    // .filter(byChar("a"))
-    .toArray();
-
-console.log(pokemonList);
-
-const pokeHTML = pokemonList.map(toHTML).join("");
-document.body.innerHTML += pokeHTML;
+    const container = document.getElementById("container");
+    const pokeHTML = pokemonList.map(toHTML).join("");
+    container.innerHTML = pokeHTML;
+}
 
 function toHTML(poke) {
     return `
@@ -86,6 +83,7 @@ async function saveFormData(event) {
     });
     form.reset();
     form.name.focus();
+    retrieveData();
     return false;
 }
 
@@ -102,3 +100,5 @@ async function saveOnDatabase({ name, pokeNumber, type }) {
 
 const form = document.querySelector('form');
 form.addEventListener("submit", saveFormData);
+
+retrieveData();

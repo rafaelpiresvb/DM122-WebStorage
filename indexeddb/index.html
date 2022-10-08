@@ -7,23 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML5 indexedDB Storage</title>
     <script src="app.js" type="module" defer></script>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <h1>Pokémon</h1>
-    <form>
-        <label>
-            Name: <input type="text" name="name" required />
-        </label>
-        <label>
-            Poke Number: <input type="number" name="pokeNumber" required />
-        </label>
-        <label>
-            Type: <input type="text" name="type" required />
-        </label>
-        <button>Add</button>
-    </form>
+    <div class="header">
+
+        <form>
+            <label>
+                Name: <input type="text" name="name" required />
+            </label>
+            <label>
+                Poke Number: <input type="number" name="pokeNumber" required />
+            </label>
+            <label>
+                Type: <input type="text" name="type" required />
+            </label>
+            <button>Add</button>
+        </form>
+    </div>
+
+    <div id="container" class="container">
+        <section>Loading...</section>
+    </div>
+
+    
 </body>
 
 </html>
