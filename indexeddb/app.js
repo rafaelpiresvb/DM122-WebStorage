@@ -10,22 +10,22 @@ db.on("populate", async () => {
     await db.pokemon.bulkPut([
         {
             name: "Bulbasaur",
-            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"),
+            picture: await downloadImage(buildUrl(1)),
             type: "grass"   
         },
         {
             name: "Charmander",
-            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"),
+            picture: await downloadImage(buildUrl(4)),
             type: "fire"
         },
         {
             name: "Squirtle",
-            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"),
+            picture: await downloadImage(buildUrl(7)),
             type: "water"
         },
         {
             name: "Pikachu",
-            picture: await downloadImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
+            picture: await downloadImage(buildUrl(25)),
             type: "electric"
         },
 
@@ -33,6 +33,10 @@ db.on("populate", async () => {
 });
 
 db.open();
+
+function buildUrl(pokeNumber) {
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`
+}
 
 function byChar(char) {
     return function (poke) {
